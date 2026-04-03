@@ -1,6 +1,19 @@
 import numpy as np
 import tensorflow as tf
-from train import model, tokenizer, vocab_size, window_size # Importing from your first file
+# from train import model, tokenizer, vocab_size, window_size # Importing from your first file
+import pickle
+
+# Load the saved tokenizer
+with open('tokenizer.pkl', 'rb') as f:
+    tokenizer = pickle.load(f)
+
+vocab_size = len(tokenizer.word_index)
+window_size = 5
+
+# loading model - also tell Keras about the custom 'AttentionLayer'
+
+from train import AttentionLayer 
+model = tf.keras.models.load_model('toy_transformer.h5', custom_objects={'AttentionLayer': AttentionLayer})
 
 def generate_text(seed_text, max_words=10):
     words = seed_text.lower().split()
@@ -12,7 +25,7 @@ def generate_text(seed_text, max_words=10):
     generated = words[:]
     
     for i in range(max_words):
-        # Extract the last 5 words (sliding window)
+        # extract the last 5 words (sliding window)
         current_window = [generated[-window_size:]]
         seq = tokenizer.texts_to_sequences(current_window)
         
