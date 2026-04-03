@@ -1,5 +1,5 @@
 # Toy Transformer Attention Model
-A clean implementation of a Self-Attention mechanism for sequence prediction using TensorFlow. The model is trained on really "toy" text snippet - provide it more data to improve it!
+A simple yet inside-out implementation of a Self-Attention mechanism for sequence prediction using TensorFlow. The model is trained on really "toy" text snippet - provide it more data to improve it!
 
 ## Instructions
 1. **Clone the repo:**
