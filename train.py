@@ -71,3 +71,8 @@ model = Model(inputs=input_layer, outputs=output_layer)
 model.compile(loss='categorical_crossentropy', optimizer='adam', metrics=['accuracy'])
 
 model.fit(train_X, train_y, epochs=50, verbose=1)
+
+model.save('toy_transformer.h5') # Saves architecture + weights
+import pickle
+with open('tokenizer.pkl', 'wb') as f:
+    pickle.dump(tokenizer, f) # Saves word-to-index mapping
